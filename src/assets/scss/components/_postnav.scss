@@ -1,3 +1,26 @@
+.searchbar-container {
+    background-color: $dark-gray-2;
+    opacity: 0;
+    visibility: hidden;
+    height: 0;
+    transition: all 0.5s ease;
+    
+    .search-bar {
+        max-width: 1140px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
+
+.searchbar-container.visible {
+    opacity: 1;
+    visibility: visible;
+    height: 128px;
+  }
+
+
 .above-container {
     background-color: $dark-gray-1;
     padding: 35px 0;

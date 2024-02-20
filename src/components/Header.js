@@ -14,8 +14,6 @@ const Header = () => {
       pauseOnHover: true,
     };
 
-    const dataTest = Data.webtoons;
-
     return (
       <Slider {...settings}>
         {Data.webtoons.map((manga, index) => (
