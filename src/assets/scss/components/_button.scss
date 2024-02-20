@@ -1,0 +1,21 @@
+.btn {
+    background: none;
+    border: 1px solid $white-1;
+    border-radius: 15px;
+    padding: 5px 15px;
+    color: $white-1;
+
+    &:hover {
+        background: darken($white-1, 60%);
+        cursor: pointer;
+        // filter: brightness(0.7);
+
+        .btn-text {
+            color: lighten($white-1, 80%);
+        }
+    }
+}
+
+body {
+    background: gray;
+}

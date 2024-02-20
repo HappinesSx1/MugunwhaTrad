@@ -1,0 +1,22 @@
+.above-container {
+    background-color: $dark-gray-1;
+    padding: 35px 0;
+    .above {
+        max-width: 1140px;
+        margin: 0 auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
+        .logo {
+            img {
+                max-width: 232px;
+            }
+        }
+        .main-menu {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+    }
+}
