@@ -18,7 +18,7 @@ const Mainhome = () => {
                 {Data.webtoons.map((manga, index) => (
                   <div className="card" key={index}>
                     <div className="card-img">
-                      <NavLink to={`/${manga.title}`}>
+                      <NavLink to={`${manga.id}/${manga.title}`}>
                         <img src={manga.thumbnail} alt="" />
                       </NavLink>
                     </div>

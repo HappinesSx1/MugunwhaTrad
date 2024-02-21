@@ -10,7 +10,7 @@ const App = () => {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/:name" element={<WebtoonPage />} />
-          <Route path="/:name/:id" element={<WebtoonPage />} />
+          <Route path="/:id/:name" element={<WebtoonPage />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -3,7 +3,7 @@
       {
         "id" : 0,
         "title": "OpenTalk",
-                "lastupdatetime" : "février 11, 2024",
+        "lastupdatetime" : "février 11, 2024",
         "thumbnail": "./images/littleimg.jpg",
         "chapitres": [
           "image_url_1_1.jpg",
@@ -14,7 +14,7 @@
       {
         "id" : 1,
         "title": "Greed Game",
-                "lastupdatetime" : "février 11, 2024",
+        "lastupdatetime" : "février 11, 2024",
         "thumbnail": "./images/littleimg.jpg",
         "chapitres": [
           "image_url_2_1.jpg",

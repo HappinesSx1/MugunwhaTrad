@@ -1,0 +1,14 @@
+.main-webtoon {
+
+    background: url(https://scan.hentai.menu/wp-content/uploads/2017/10/1092626-scaled.jpg) center/cover;
+    
+    .webtoon-container {
+        max-width: 1140px;
+        margin: 0 auto;
+
+        .webtoon {
+            display: grid;
+            grid-template-columns: 30% 70%;
+        }
+    }
+}

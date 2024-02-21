@@ -1,31 +1,36 @@
 import React, { useState } from "react";
 import logo from "../assets/images/Logo_octov4.png";
 import { NavLink } from "react-router-dom";
+import data from "../data.json";
 
 const Postnav = () => {
   const [isDisplay, setIsDisplay] = useState(false);
   const [searchTerm, setSearchTerm] = useState("");
+  // const [redirectUrl, setRedirectUrl] = useState(null);
 
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setIsDisplay(false);
-  //   history.push(`/${searchTerm}`);
-  // };
-
   const toggleSearchBar = () => {
     setIsDisplay(!isDisplay);
   };
+  const foundWebtoon = data.webtoons.find(
+    (webtoon) => webtoon.title.toLowerCase() === searchTerm.toLowerCase()
+  );
 
   return (
     <>
       <div className={`searchbar-container ${isDisplay ? "visible" : ""}`}>
         <form className="search-bar">
           <input type="text" value={searchTerm} onChange={handleChange} />
-          <NavLink to={`/${searchTerm}`}>
+          <NavLink
+            to={
+              foundWebtoon
+                ? `/${foundWebtoon.id}/${searchTerm.toLowerCase()}`
+                : "/nofound"
+            }
+          >
             <input type="submit" />
           </NavLink>
         </form>

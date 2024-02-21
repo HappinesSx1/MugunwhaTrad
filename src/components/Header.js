@@ -12,6 +12,26 @@ const Header = () => {
       // autoplay: true,
       autoplaySpeed: 3500,
       pauseOnHover: true,
+      responsive: [
+        {
+          breakpoint: 1200,
+          settings: {
+            slidesToShow: 3,
+          },
+        },
+        {
+          breakpoint: 990,
+          settings: {
+            slidesToShow: 2,
+          },
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 1,
+          },
+        },
+      ],
     };
 
     return (
