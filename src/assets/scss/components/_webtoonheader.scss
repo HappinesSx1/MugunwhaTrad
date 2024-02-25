@@ -5,10 +5,28 @@
     .webtoon-container {
         max-width: 1140px;
         margin: 0 auto;
+        padding: 15px 0 50px;
 
         .webtoon {
             display: grid;
-            grid-template-columns: 30% 70%;
+            grid-template-columns: 225px auto;
+            gap: 30px;
+            
+            .webtoon-img {
+                padding: 15px;
+                background: $white-half;
+                
+                
+                img {
+                    width: 100%;
+                    display: block;
+                }
+            }
+
+            .webtoon-desc {
+                padding: 15px;
+                background: $white-half;
+            }
         }
     }
 }

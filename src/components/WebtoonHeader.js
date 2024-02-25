@@ -1,20 +1,16 @@
 import React from "react";
-import Data from "../data.json";
-import { useParams } from "react-router-dom";
 
-const WebtoonHeader = () => {
-  const { id } = useParams();
-
-  const newData = Data.webtoons[id];
-
+const WebtoonHeader = ({ data }) => {
   return (
     <main className="main-webtoon">
       <div className="webtoon-container">
         <div className="webtoon">
           <div className="webtoon-img">
-            <img src={newData.thumbnail} alt="" />
+            <img src={data.thumbnail} alt="" />
           </div>
-          <div className="webtoon-desc"></div>
+          <div className="webtoon-desc">
+            <p>{data.title}</p>
+          </div>
         </div>
       </div>
     </main>

@@ -1,15 +1,14 @@
 import React from "react";
 import Slider from "react-slick";
-import Data from "../data.json";
 
-const Header = () => {
+const Header = ({ data }) => {
   function MultipleItems() {
     const settings = {
       infinite: true,
       speed: 500,
       slidesToShow: 4,
       slidesToScroll: 1,
-      // autoplay: true,
+      autoplay: true,
       autoplaySpeed: 3500,
       pauseOnHover: true,
       responsive: [
@@ -36,7 +35,7 @@ const Header = () => {
 
     return (
       <Slider {...settings}>
-        {Data.webtoons.map((manga, index) => (
+        {data.webtoons.map((manga, index) => (
           <div className="slider-item" key={index}>
             <div className="item-wrap">
               <div className="slider-thumb">
@@ -49,10 +48,10 @@ const Header = () => {
                 </div>
                 <div className="last-chap">
                   <button className="btn">
-                    Chapitre {manga.chapitres.length - 2}
+                    Chapitre {manga.chapitres.length - 1}
                   </button>
                   <button className="btn">
-                    Chapitre {manga.chapitres.length - 1}
+                    Chapitre {manga.chapitres.length}
                   </button>
                 </div>
               </div>

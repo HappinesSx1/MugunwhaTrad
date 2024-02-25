@@ -1,9 +1,8 @@
 import React from "react";
-import Data from "../data.json";
 import { NavLink } from "react-router-dom";
 
-const Mainhome = () => {
-  const sixPremiersElements = Data.webtoons.slice(0, 6);
+const Mainhome = ({ data }) => {
+  const sixPremiersElements = data.webtoons.slice(0, 6);
 
   return (
     <main className="site-content">
@@ -15,7 +14,7 @@ const Mainhome = () => {
           <div className="blog-listing">
             <div className="listing-content">
               <div className="cards-main">
-                {Data.webtoons.map((manga, index) => (
+                {data.webtoons.map((manga, index) => (
                   <div className="card" key={index}>
                     <div className="card-img">
                       <NavLink to={`${manga.id}/${manga.title}`}>
@@ -26,10 +25,22 @@ const Mainhome = () => {
                       <h4>{manga.title}</h4>
                       <div className="last-chap">
                         <button className="btn">
-                          Chapitre {manga.chapitres.length - 2}
+                          <NavLink
+                            to={`${manga.id}/${manga.title}/${
+                              Object.keys(manga.chapitres).length - 1
+                            }`}
+                          >
+                            Chapitre {manga.chapitres.length - 1}
+                          </NavLink>
                         </button>
                         <button className="btn">
-                          Chapitre {manga.chapitres.length - 1}
+                          <NavLink
+                            to={`${manga.id}/${manga.title}/${
+                              Object.keys(manga.chapitres).length
+                            }`}
+                          >
+                            Chapitre {manga.chapitres.length}
+                          </NavLink>
                         </button>
                       </div>
                     </div>
@@ -53,10 +64,22 @@ const Mainhome = () => {
                   <h4>{manga.title}</h4>
                   <div className="last-chap">
                     <button className="btn">
-                      Chapitre {manga.chapitres.length - 2}
+                      <NavLink
+                        to={`${manga.id}/${manga.title}/${
+                          Object.keys(manga.chapitres).length - 1
+                        }`}
+                      >
+                        Chapitre {manga.chapitres.length - 1}
+                      </NavLink>
                     </button>
                     <button className="btn">
-                      Chapitre {manga.chapitres.length - 1}
+                      <NavLink
+                        to={`${manga.id}/${manga.title}/${
+                          Object.keys(manga.chapitres).length
+                        }`}
+                      >
+                        Chapitre {manga.chapitres.length}
+                      </NavLink>
                     </button>
                   </div>
                 </div>
