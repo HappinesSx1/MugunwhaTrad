@@ -6,9 +6,9 @@
         "lastupdatetime" : "février 11, 2024",
         "thumbnail": "/images/mediumimg.jpg",
         "chapitres" : [
-          ["image_url_1_1.jpg"],
-          ["image_url_1_2.jpg"],
-          ["image_url_1_3.jpg"]
+          ["/images/mediumimg.jpg", "/images/mediumimg.jpg"],
+          ["/image_url_1_2.jpg"],
+          ["/image_url_1_3.jpg"]
         ]
       },
       {
