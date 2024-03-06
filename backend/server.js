@@ -8,6 +8,10 @@ connectDB();
 
 const app = express();
 
+// Request payload middleware
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.use("/webtoons", require("./routes/webtoon.routes"));
 
 // Lancer le serveur

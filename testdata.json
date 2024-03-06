@@ -1,0 +1,9 @@
+{
+        "title": "OpenTalk",
+        "thumbnail": "/images/mediumimg.jpg",
+        "chapitres" : [
+          ["/images/mediumimg.jpg", "/images/mediumimg.jpg"],
+          ["/image_url_1_2.jpg"],
+          ["/image_url_1_3.jpg"]
+        ]
+}

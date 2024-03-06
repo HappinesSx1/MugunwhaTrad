@@ -20,7 +20,7 @@ const webtoonSchema = mongoose.Schema(
       type: String,
       // required: true,
     },
-    chapitres: [imageSchema],
+    chapitres: String,
   },
   {
     timestamps: true,
