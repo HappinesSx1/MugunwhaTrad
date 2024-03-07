@@ -33,9 +33,11 @@ const Header = ({ data }) => {
       ],
     };
 
+    console.log(data);
+
     return (
       <Slider {...settings}>
-        {data.webtoons.map((manga, index) => (
+        {data.map((manga, index) => (
           <div className="slider-item" key={index}>
             <div className="item-wrap">
               <div className="slider-thumb">

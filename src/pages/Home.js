@@ -3,16 +3,15 @@ import Navigation from "../components/Navigation";
 import Postnav from "../components/Postnav";
 import Header from "../components/Header";
 import Mainhome from "../components/Mainhome";
-import Data from "../data.json";
+import axios from "axios";
 
 const Home = () => {
   const [webtoons, setWebtoons] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/webtoons")
-      .then((response) => response.json())
-      .then((data) => setWebtoons(data))
-      .catch((error) => console.error("Error fetching webtoons:", error));
+    axios
+      .get("http://localhost:5000/webtoons/")
+      .then((res) => setWebtoons(res.data));
   }, []);
 
   console.log(webtoons);
@@ -21,8 +20,8 @@ const Home = () => {
     <>
       <Postnav />
       <Navigation />
-      <Header data={Data} />
-      <Mainhome data={Data} />
+      <Header data={webtoons} />
+      <Mainhome data={webtoons} />
       <div>
         <h1>Liste des Webtoons</h1>
         <ul>
@@ -35,13 +34,7 @@ const Home = () => {
               <ul>
                 {webtoon.chapitres.map((chapitre, index) => (
                   <li key={index}>
-                    {chapitre.map((image, idx) => (
-                      <img
-                        key={idx}
-                        src={image}
-                        alt={`Chapitre ${index + 1}`}
-                      />
-                    ))}
+                    <img src={chapitre.url} alt={chapitre.alt} />
                   </li>
                 ))}
               </ul>

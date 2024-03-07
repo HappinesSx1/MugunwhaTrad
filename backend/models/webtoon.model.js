@@ -14,13 +14,13 @@ const webtoonSchema = mongoose.Schema(
   {
     title: {
       type: String,
-      // required: true,
+      required: true,
     },
     thumbnail: {
       type: String,
-      // required: true,
+      required: true,
     },
-    chapitres: String,
+    chapitres: [imageSchema],
   },
   {
     timestamps: true,
