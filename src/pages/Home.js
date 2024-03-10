@@ -1,31 +1,44 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Navigation from "../components/Navigation";
 import Postnav from "../components/Postnav";
 import Header from "../components/Header";
 import Mainhome from "../components/Mainhome";
-import axios from "axios";
+import GetWebtoonApi from "../hook/GetWebtoonApi";
+import {
+  ProgressCircle,
+  defaultTheme,
+  Provider,
+  View,
+} from "@adobe/react-spectrum";
 
 const Home = () => {
-  const [webtoons, setWebtoons] = useState([]);
+  const { data, loading } = GetWebtoonApi("http://localhost:5000/webtoons/");
 
-  useEffect(() => {
-    axios
-      .get("http://localhost:5000/webtoons/")
-      .then((res) => setWebtoons(res.data));
-  }, []);
-
-  console.log(webtoons);
+  if (loading) {
+    return (
+      <div className="loading-container">
+        <Provider theme={defaultTheme}>
+          <ProgressCircle
+            aria-label="Loading…"
+            size="L"
+            isIndeterminate
+            staticColor="white"
+          />
+        </Provider>
+      </div>
+    );
+  }
 
   return (
     <>
       <Postnav />
       <Navigation />
-      <Header data={webtoons} />
-      <Mainhome data={webtoons} />
-      <div>
+      <Header data={data} />
+      <Mainhome data={data} />
+      {/* <div>
         <h1>Liste des Webtoons</h1>
         <ul>
-          {webtoons.map((webtoon) => (
+          {data.map((webtoon) => (
             <li key={webtoon._id}>
               <h2>{webtoon.title}</h2>
               <img src={webtoon.thumbnail} alt={webtoon.title} />
@@ -41,7 +54,7 @@ const Home = () => {
             </li>
           ))}
         </ul>
-      </div>
+      </div> */}
     </>
   );
 };

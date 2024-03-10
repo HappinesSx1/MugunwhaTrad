@@ -9,12 +9,12 @@ connectDB();
 
 const app = express();
 
+// Handle CORS issues
+app.use(cors());
+
 // Request payload middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
-// Handle CORS issues
-app.use(cors());
 
 app.use("/webtoons", require("./routes/webtoon.routes"));
 
