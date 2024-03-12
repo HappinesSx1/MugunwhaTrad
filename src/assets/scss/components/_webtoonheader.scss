@@ -40,13 +40,47 @@
         }
         .modal-container {
             width: 630px;
-            height: 670px;
+            min-height: 670px;
             position: fixed;
             top: 50%;
             left: 50%;
             padding: 25px;
             background: white;
             transform: translate(-50%, -50%);
+
+            .dragndrop-container {
+
+                max-width: 80%;
+                margin: 50px auto 0;
+                
+                .dropzone {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border: 3px dashed $red-1;
+                    padding: 75px 20px;
+                }
+                .upload-aside {
+
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr 1fr;
+                    gap: 10px;
+                    margin-top: 20px;
+
+                    
+                    .upload-container {
+                        .img-uploaded {
+                            @include centerdiv;
+                            
+                            img {
+                                max-height: 150px;
+                                width: 100%;
+                                object-fit: cover;
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
