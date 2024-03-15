@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const imageSchema = new mongoose.Schema({
   url: {
     type: [String],
-    required: true,
+    // required: true,
   },
   alt: {
     type: String,
@@ -14,11 +14,11 @@ const webtoonSchema = mongoose.Schema(
   {
     title: {
       type: String,
-      required: true,
+      // required: true,
     },
     thumbnail: {
       type: String,
-      required: true,
+      // required: true,
     },
     chapitres: [imageSchema],
   },

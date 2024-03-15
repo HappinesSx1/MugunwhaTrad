@@ -3,10 +3,12 @@ import { ActionButton, Provider, defaultTheme } from "@adobe/react-spectrum";
 import { Text } from "@adobe/react-spectrum";
 import Edit from "@spectrum-icons/workflow/Edit";
 import { useDropzone } from "react-dropzone";
+import axios from "axios";
 
 const WebtoonHeader = ({ data }) => {
   const [isEdit, setIsEdit] = useState(false);
   const [fileData, setFileData] = useState([]);
+  let formData = [];
 
   const handleModal = () => {
     setIsEdit(!isEdit);
@@ -14,30 +16,31 @@ const WebtoonHeader = ({ data }) => {
 
   /* dropzone */
 
-  const onDrop = useCallback((acceptedFiles) => {
-    setFileData(acceptedFiles);
-  }, []);
-  const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
+  // const onDrop = useCallback((acceptedFiles) => {
+  //   // setFileData(acceptedFiles);
+  // }, []);
+  // const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   /* preview */
   function Previews(props) {
     const [files, setFiles] = useState([]);
+
     const { getRootProps, getInputProps } = useDropzone({
       accept: {
         "image/*": [],
       },
       onDrop: (acceptedFiles) => {
-        setFiles(
-          acceptedFiles.map((file) =>
-            Object.assign(file, {
-              preview: URL.createObjectURL(file),
-            })
-          )
+        const updatedFiles = acceptedFiles.map((file) =>
+          Object.assign(file, {
+            preview: URL.createObjectURL(file),
+          })
         );
+        setFiles([...files, ...updatedFiles]);
+        setFileData([...fileData, ...updatedFiles]);
       },
     });
 
-    const thumbs = files.map((file) => (
+    const thumbs = fileData.map((file) => (
       <div key={file.name} className="upload-container">
         <div className="img-uploaded">
           <img
@@ -71,80 +74,42 @@ const WebtoonHeader = ({ data }) => {
   // Function to send files to API
   const sendFilesToAPI = () => {
     // Using FormData to prepare files for sending
-    const formData = new FormData();
     fileData.forEach((file) => {
-      formData.append(file.path);
+      formData.push(file.path);
     });
 
     console.log(formData);
+
+    const dataSend = {
+      title: "test",
+      thumbnail: "/images/mediumimg.jpg",
+      chapitres: formData,
+    };
+
+    // axios
+    //   .post("http://localhost:5000/webtoons/", {
+    //     "Content-Type": "application/json",
+    //     body: dataSend,
+    //   })
+    //   .then((res) => {
+    //     console.log("Réponse de la requête POST :", res.data);
+    //   })
+    //   .catch((err) => {
+    //     console.error("Error updating username:", err);
+    //   });
+
+    axios({
+      method: "post",
+      url: "http://localhost:5000/webtoons/",
+      data: dataSend,
+    })
+      .then((res) => {
+        console.log("Réponse de la requête POST :", res.data);
+      })
+      .catch((err) => {
+        console.error("Error updating username:", err);
+      });
   };
-
-  // const [isEdit, setIsEdit] = useState(false);
-  // const [files, setFiles] = useState([]);
-  // const [fileData, setFileData] = useState([]);
-
-  // const handleModal = () => {
-  //   setIsEdit(!isEdit);
-  // };
-
-  // /* dropzone */
-
-  // const onDrop = useCallback((acceptedFiles) => {
-  //   setFiles(acceptedFiles);
-  //   setFileData([]);
-  // }, []);
-
-  // const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
-
-  // /* preview */
-  // function Previews(props) {
-  //   const thumbs = files.map((file, index) => {
-  //     const data = fileData[index] || {};
-
-  //     return (
-  //       <div key={file.name} className="upload-container">
-  //         <div className="img-uploaded">
-  //           <img
-  //             src={file.preview}
-  //             // Revoke data uri after image is loaded
-  //             onLoad={() => {
-  //               URL.revokeObjectURL(file.preview);
-  //             }}
-  //           />
-  //           {data.path && <p>Path: {data.path}</p>}
-  //           {data.error && <p>Error: {data.error}</p>}
-  //         </div>
-  //       </div>
-  //     );
-  //   });
-
-  //   return (
-  //     <section className="dragndrop-container">
-  //       <div {...getRootProps({ className: "dropzone" })}>
-  //         <input {...getInputProps()} />
-  //         <p>Drag 'n' drop some files here, or click to select files</p>
-  //       </div>
-  //       <aside className="upload-aside">{thumbs}</aside>
-  //     </section>
-  //   );
-  // }
-
-  // // Function to send files to API
-  // const sendFilesToAPI = () => {
-  //   // Assuming you have an API endpoint to which you want to send the files
-  //   const apiUrl = "your_api_endpoint_here";
-
-  //   // Using FormData to prepare files for sending
-  //   const formData = new FormData();
-  //   files.forEach((file) => {
-  //     formData.append("images", file);
-  //   });
-  // };
-
-  // useEffect(() => {
-  //   const newFileData = files.map(() => ({}));
-  //   setFileData(newFileData);
-  // }, [files]);
 
   return (
     <main className="main-webtoon">
