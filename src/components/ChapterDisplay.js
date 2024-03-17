@@ -7,9 +7,7 @@ const ChapterDisplay = ({ data }) => {
       <div className="chapters">
         {data.chapitres.map((manga, index) => (
           <div className="chapter" key={index}>
-            <NavLink
-              to={{ pathname: `${index + 1}`, state: { chapterData: manga } }}
-            >
+            <NavLink to={{ pathname: `${index + 1}`, state: { data: manga } }}>
               Chapitre {index + 1}
             </NavLink>
           </div>

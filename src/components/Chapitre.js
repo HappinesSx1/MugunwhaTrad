@@ -4,7 +4,7 @@ const Chapitre = ({ data }) => {
   console.log(data);
   return (
     <div className="img-container">
-      {data.map((img, index) => (
+      {data.url.map((img, index) => (
         <img src={img} alt="" key={index} />
       ))}
     </div>

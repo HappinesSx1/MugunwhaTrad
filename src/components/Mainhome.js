@@ -1,8 +1,22 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const Mainhome = ({ data }) => {
   const sixPremiersElements = data.slice(0, 6);
+
+  const [isNew, setIsNew] = useState(false);
+  const dateStr = "2024-03-16T01:36:42.296+00:00"; // Votre date au format ISO 8601
+
+  useEffect(() => {
+    const date = new Date(dateStr);
+    const currentDate = new Date();
+    const differenceInMs = currentDate - date;
+    const differenceInHours = differenceInMs / (1000 * 60 * 60);
+
+    if (differenceInHours < 24) {
+      setIsNew(true);
+    }
+  }, []);
 
   return (
     <main className="site-content">
@@ -17,29 +31,37 @@ const Mainhome = ({ data }) => {
                 {data.map((manga, index) => (
                   <div className="card" key={index}>
                     <div className="card-img">
-                      <NavLink to={`${manga.title.toLowerCase()}`}>
+                      <NavLink
+                        to={
+                          manga.title
+                            ? `${manga.title.toLowerCase()}`
+                            : "/nofound"
+                        }
+                      >
                         <img src={manga.thumbnail} alt="" />
                       </NavLink>
                     </div>
                     <div className="card-description">
                       <h4>{manga.title}</h4>
                       <div className="last-chap">
-                        <button className="btn">
-                          <NavLink
-                            to={`${manga.title}/${
-                              Object.keys(manga.chapitres).length - 1
-                            }`}
-                          >
-                            Chapitre {manga.chapitres.length - 1}
-                          </NavLink>
-                        </button>
+                        <NavLink
+                          to={`${manga.title.toLowerCase()}/${
+                            Object.keys(manga.chapitres).length - 1
+                          }`}
+                        >
+                          <button className="btn">
+                            Chapitre {manga.chapitres.length - 1}{" "}
+                            {isNew && <span>NEW</span>}
+                          </button>
+                        </NavLink>
                         <button className="btn">
                           <NavLink
                             to={`${manga.title}/${
                               Object.keys(manga.chapitres).length
                             }`}
                           >
-                            Chapitre {manga.chapitres.length}
+                            Chapitre {manga.chapitres.length}{" "}
+                            {isNew && <span>NEW</span>}
                           </NavLink>
                         </button>
                       </div>

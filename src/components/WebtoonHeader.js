@@ -80,34 +80,26 @@ const WebtoonHeader = ({ data }) => {
 
     console.log(formData);
 
-    const dataSend = {
-      title: "test",
-      thumbnail: "/images/mediumimg.jpg",
-      chapitres: formData,
+    const chapitreData = {
+      url: formData,
+      alt: "Nouveau chapitre2",
     };
 
-    // axios
-    //   .post("http://localhost:5000/webtoons/", {
-    //     "Content-Type": "application/json",
-    //     body: dataSend,
-    //   })
-    //   .then((res) => {
-    //     console.log("Réponse de la requête POST :", res.data);
-    //   })
-    //   .catch((err) => {
-    //     console.error("Error updating username:", err);
-    //   });
+    const webtoonId = data._id;
+    console.log(webtoonId);
 
-    axios({
-      method: "post",
-      url: "http://localhost:5000/webtoons/",
-      data: dataSend,
-    })
-      .then((res) => {
-        console.log("Réponse de la requête POST :", res.data);
+    axios
+      .post(
+        `http://localhost:5000/webtoons/${webtoonId}/chapitres`,
+        chapitreData
+      )
+      .then((response) => {
+        console.log("Chapitre ajouté avec succès :", response.data);
+        // Traitez la réponse si nécessaire
       })
-      .catch((err) => {
-        console.error("Error updating username:", err);
+      .catch((error) => {
+        console.error("Erreur lors de l'ajout du chapitre :", error);
+        // Gérez l'erreur si nécessaire
       });
   };
 

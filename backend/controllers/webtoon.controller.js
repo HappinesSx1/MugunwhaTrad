@@ -22,16 +22,33 @@ module.exports.setWebtoons = async (req, res) => {
   }
 };
 
-module.exports.editPost = async (req, res) => {
-  const post = await PostModel.findById(req.params.id);
+// module.exports.editPost = async (req, res) => {
+//   const post = await PostModel.findById(req.params.id);
 
-  if (!post) {
-    res.status(400).json({ message: "Ce post n'existe pas" });
+//   if (!post) {
+//     res.status(400).json({ message: "Ce post n'existe pas" });
+//   }
+
+//   const updatePost = await PostModel.findByIdAndUpdate(post, req.body, {
+//     new: true,
+//   });
+
+//   res.status(200).json(updatePost);
+// };
+
+module.exports.setChapitres = async (req, res) => {
+  try {
+    const webtoonId = req.params.id;
+    const chapitreData = req.body; // Assurez-vous que req.body contient les données du nouveau chapitre
+
+    // Ajouter le nouveau chapitre au webtoon avec l'ID donné
+    const webtoon = await WebtoonModel.findById(webtoonId);
+    webtoon.chapitres.push(chapitreData);
+    await webtoon.save();
+
+    res.status(201).send(webtoon); // Répondre avec le webtoon mis à jour
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Erreur serveur");
   }
-
-  const updatePost = await PostModel.findByIdAndUpdate(post, req.body, {
-    new: true,
-  });
-
-  res.status(200).json(updatePost);
 };

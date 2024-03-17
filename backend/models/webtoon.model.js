@@ -1,14 +1,19 @@
 const mongoose = require("mongoose");
 
-const imageSchema = new mongoose.Schema({
-  url: {
-    type: [String],
-    // required: true,
+const imageSchema = new mongoose.Schema(
+  {
+    url: {
+      type: [String],
+      // required: true,
+    },
+    alt: {
+      type: String,
+    },
   },
-  alt: {
-    type: String,
-  },
-});
+  {
+    timestamps: true,
+  }
+);
 
 const webtoonSchema = mongoose.Schema(
   {
