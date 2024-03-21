@@ -4,6 +4,7 @@ import { Text } from "@adobe/react-spectrum";
 import Edit from "@spectrum-icons/workflow/Edit";
 import { useDropzone } from "react-dropzone";
 import axios from "axios";
+import { NavLink } from "react-router-dom";
 
 const WebtoonHeader = ({ data }) => {
   const [isEdit, setIsEdit] = useState(false);
@@ -103,15 +104,58 @@ const WebtoonHeader = ({ data }) => {
       });
   };
 
+  console.log(data.tags);
+
   return (
     <main className="main-webtoon">
       <div className="webtoon-container">
+        <div className="title-webtoon">
+          <h1>{data.title}</h1>
+        </div>
         <div className="webtoon">
           <div className="webtoon-img">
             <img src={data.thumbnail} alt="" />
           </div>
           <div className="webtoon-desc">
-            <p>{data.title}</p>
+            <div className="themes-container">
+              <div className="rating-container">
+                <div className="rating-star">{data.rating}</div>
+              </div>
+              <div className="rank">
+                <h3>Rank</h3>
+                <p>N/A, it has 45.8k monthly views</p>
+              </div>
+              <div className="alternative">
+                <h3>Alternative</h3>
+                <p>待ち人、超来たる。</p>
+              </div>
+              <div className="author">
+                <h3>Author(s)</h3>
+                <p>{data.autor}</p>
+              </div>
+              <div className="artist">
+                <h3>Artist(s)</h3>
+                <p>{data.artist}</p>
+              </div>
+              <div className="genre">
+                <h3>Genre(s)</h3>
+                {data.types.map((type, index) => (
+                  <p key={index}>{type}</p>
+                ))}
+              </div>
+              <div className="tag">
+                <h3>Tag(s)</h3>
+                {data.tags.map((tag, index) => (
+                  <p key={index}>{tag}</p>
+                ))}
+              </div>
+            </div>
+            <div className="reading-choices">
+              <div className="read-first">
+                <NavLink>Read First</NavLink>
+              </div>
+              <div className="read-last"></div>
+            </div>
             <button onClick={handleModal}>Ouvrir</button>
             <Provider theme={defaultTheme} width="69px">
               <ActionButton onClick={handleModal} staticColor="white">

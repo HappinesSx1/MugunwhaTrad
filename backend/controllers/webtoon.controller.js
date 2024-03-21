@@ -13,6 +13,11 @@ module.exports.setWebtoons = async (req, res) => {
       title: req.body.title,
       thumbnail: req.body.thumbnail,
       chapitres: req.body.chapitres,
+      rating: req.body.rating,
+      tags: req.body.tags,
+      types: req.body.types,
+      autor: req.body.autor,
+      artist: req.body.artist,
     });
     res.status(200).json(webtoon);
   } catch (error) {

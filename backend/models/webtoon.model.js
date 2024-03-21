@@ -26,6 +26,23 @@ const webtoonSchema = mongoose.Schema(
       // required: true,
     },
     chapitres: [imageSchema],
+    rating: {
+      type: Number,
+      min: 0,
+      max: 5,
+    },
+    tags: {
+      type: [String],
+    },
+    types: {
+      type: [String],
+    },
+    autor: {
+      type: String,
+    },
+    artist: {
+      type: String,
+    },
   },
   {
     timestamps: true,
