@@ -1,9 +1,13 @@
+// .main-chap-btn {
+
+// }
 .btn {
     background: none;
     border: 1px solid $white-1;
     border-radius: 15px;
     padding: 5px 15px;
     color: $white-1;
+    width: 100%;
 
     &:hover {
         background: darken($white-1, 60%);

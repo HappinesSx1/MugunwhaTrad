@@ -48,22 +48,24 @@ const Mainhome = ({ data }) => {
                           to={`${manga.title.toLowerCase()}/${
                             Object.keys(manga.chapitres).length - 1
                           }`}
+                          className="main-chap-btn"
                         >
                           <button className="btn">
                             Chapitre {manga.chapitres.length - 1}{" "}
                             {isNew && <span>NEW</span>}
                           </button>
                         </NavLink>
-                        <button className="btn">
-                          <NavLink
-                            to={`${manga.title}/${
-                              Object.keys(manga.chapitres).length
-                            }`}
-                          >
+                        <NavLink
+                          to={`${manga.title.toLowerCase()}/${
+                            Object.keys(manga.chapitres).length
+                          }`}
+                          className="main-chap-btn"
+                        >
+                          <button className="btn">
                             Chapitre {manga.chapitres.length}{" "}
                             {isNew && <span>NEW</span>}
-                          </NavLink>
-                        </button>
+                          </button>
+                        </NavLink>
                       </div>
                     </div>
                   </div>
@@ -80,29 +82,33 @@ const Mainhome = ({ data }) => {
             {sixPremiersElements.map((manga, index) => (
               <div className="card" key={index}>
                 <div className="card-img">
-                  <img src={manga.thumbnail} alt="" />
+                  <NavLink to={`${manga.title.toLowerCase()}`}>
+                    <img src={manga.thumbnail} alt="" />
+                  </NavLink>
                 </div>
                 <div className="card-description">
                   <h4>{manga.title}</h4>
                   <div className="last-chap">
-                    <button className="btn">
-                      <NavLink
-                        to={`${manga.title}/${
-                          Object.keys(manga.chapitres).length - 1
-                        }`}
-                      >
+                    <NavLink
+                      to={`${manga.title.toLowerCase()}/${
+                        Object.keys(manga.chapitres).length - 1
+                      }`}
+                      className="main-chap-btn"
+                    >
+                      <button className="btn">
                         Chapitre {manga.chapitres.length - 1}
-                      </NavLink>
-                    </button>
-                    <button className="btn">
-                      <NavLink
-                        to={`${manga.title}/${
-                          Object.keys(manga.chapitres).length
-                        }`}
-                      >
+                      </button>
+                    </NavLink>
+                    <NavLink
+                      to={`${manga.title.toLowerCase()}/${
+                        Object.keys(manga.chapitres).length
+                      }`}
+                      className="main-chap-btn"
+                    >
+                      <button className="btn">
                         Chapitre {manga.chapitres.length}
-                      </NavLink>
-                    </button>
+                      </button>
+                    </NavLink>
                   </div>
                 </div>
               </div>

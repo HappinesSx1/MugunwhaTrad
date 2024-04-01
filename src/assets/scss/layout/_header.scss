@@ -11,7 +11,7 @@
         position: relative;
 
         .slick-slider {
-            margin: 0 20px;
+            // margin: 0 20px;
 
         .slick-list {
             padding: 50px 0 10px;
@@ -35,7 +35,7 @@
 
                         .item-wrap {
                             background-color: rgba(235, 235, 235, 0.2);
-                            height: 180px;
+                            height: 181.48px;
 
                             .slider-thumb {
                                 width: 126px;
@@ -74,12 +74,15 @@
             background-color: #363636;
             position: absolute;
             top: 0;
-
+            color: $white-1;
+            padding: 10px;
         }
 
         .slick-prev {
             right: 40px;
             left: auto;
+            margin-right: 15px;
+
         }
         .slick-next {
             right: 0;
