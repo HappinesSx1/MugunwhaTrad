@@ -107,3 +107,21 @@
         }
     }
 }
+
+.hover-infor {
+    position: absolute;
+    z-index: 99999;
+    color: white;
+
+    .background {
+        background-color: gray;
+        width: 400px;
+        height: 250px;
+
+        img {
+            width: 200px;
+            height: 250px;
+            display: block;
+        }
+    }
+}
